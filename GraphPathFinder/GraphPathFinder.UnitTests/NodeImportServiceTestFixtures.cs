@@ -49,15 +49,32 @@ namespace GraphPathFinder.UnitTests
         public void IfANodeDoesntAppearInTheListDeleteFromDataStore()
         {
 
-            var nodeToDelete = new Node() {Id = 1};
+            var nodesInTheDataStore = new Node() { Id = 1 };
             var nodeImportService = GetNodeImporterInstance(_nodeRepository.Object);
 
-            _nodeRepository.Setup(f => f.GetAll()).Returns(new List<Node>(){nodeToDelete});
+            _nodeRepository.Setup(f => f.GetAll()).Returns(new List<Node>(){nodesInTheDataStore});
 
             nodeImportService.Import(new List<Node>() {});
 
-            _nodeRepository.Verify(f => f.Delete(nodeToDelete.Id), Times.Once);  
+            _nodeRepository.Verify(f => f.Delete(nodesInTheDataStore.Id), Times.Once);  
         }
+
+         [TestCase]
+         public void IfANodeAlreadyExistsInTheFilesAndInTheDatStoreDontDoAnything()
+         {
+
+             var nodesInTheDataStore =new List<Node>() {new Node(){ Id = 1 }};
+             var nodeToImport = new List<Node>() { new Node() { Id = 1 } };
+             
+             var nodeImportService = GetNodeImporterInstance(_nodeRepository.Object);
+
+             _nodeRepository.Setup(f => f.GetAll()).Returns(nodesInTheDataStore);
+
+             nodeImportService.Import(nodeToImport);
+
+             _nodeRepository.Verify(f => f.Delete(It.IsAny<int>()), Times.Never);
+             _nodeRepository.Verify(f => f.Insert(It.IsAny<Node>()), Times.Never);
+         }
 
 
 
