@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GraphPathFinder.Models;
+using GraphPathFinder.UnitTests;
 
-namespace GraphPathFinder.UnitTests
+namespace GraphPathFinder.ShortestPathAlgorithsm
 {
     public class DijkstraShortestPathCalculator : IShortPathCalculator
     {
@@ -48,8 +49,7 @@ namespace GraphPathFinder.UnitTests
                     if (newDistance < distances[adjacentNode])
                     {
                         distances[adjacentNode] = newDistance;
-                    }
-                    
+                    }                  
                 }
 
                 nodesToVisit.Remove(currentNode);

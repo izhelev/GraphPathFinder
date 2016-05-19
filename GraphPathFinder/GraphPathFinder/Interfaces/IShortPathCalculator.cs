@@ -1,4 +1,4 @@
-﻿namespace GraphPathFinder.UnitTests
+﻿namespace GraphPathFinder.Interfaces
 {
     public interface IShortPathCalculator
     {
