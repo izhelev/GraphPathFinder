@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NodeImportService.cs" />
+    <Compile Include="NodeImportServiceTestFixtures.cs" />
     <Compile Include="NodeXmlDeserializerTestFixtures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
