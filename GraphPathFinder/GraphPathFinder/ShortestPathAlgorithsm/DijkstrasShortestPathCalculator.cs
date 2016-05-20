@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GraphPathFinder.Interfaces;
 using GraphPathFinder.Models;
-using GraphPathFinder.UnitTests;
 
 namespace GraphPathFinder.ShortestPathAlgorithsm
 {
-    public class DijkstraShortestPathCalculator : IShortPathCalculator
+    public class DijkstrasShortestPathCalculator : IShortPathCalculator
     {
         private readonly List<Node> _nodesInMap;
 
         private readonly Dictionary<int, Node> _indexedNodes;
 
-        public DijkstraShortestPathCalculator(List<Node> nodesInMap)
+        public DijkstrasShortestPathCalculator(List<Node> nodesInMap)
         {
             _nodesInMap = nodesInMap;            ;
             _indexedNodes = InitGraph(nodesInMap);
@@ -50,6 +50,12 @@ namespace GraphPathFinder.ShortestPathAlgorithsm
                     {
                         distances[adjacentNode] = newDistance;
                     }                  
+                }
+
+                if (distances[currentNodeId] == int.MaxValue)
+                {
+                    path = new List<int>();
+                    break;
                 }
 
                 nodesToVisit.Remove(currentNode);

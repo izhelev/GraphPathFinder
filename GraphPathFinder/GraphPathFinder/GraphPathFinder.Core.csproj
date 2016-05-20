@@ -40,9 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\INodeRepository.cs" />
+    <Compile Include="Interfaces\IShortPathCalculator.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\NodeImportService.cs" />
+    <Compile Include="ShortestPathAlgorithsm\DijkstrasShortestPathCalculator.cs" />
     <Compile Include="Utilities\NodeXmlDeserializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
